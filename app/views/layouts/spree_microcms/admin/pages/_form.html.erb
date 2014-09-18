@@ -1,0 +1,24 @@
+<div data-hook="micro_cms_admin_page_fields">
+  <div class="alpha twelve columns">
+    <fieldset class=" no-border-bottom">
+      <legend align="center"><%= Spree.t(:general_settings) %></legend>
+
+      <div class="alpha six columns">
+        <div class="field">
+          <%= f.label :key, t(:key) %>
+          <%= f.text_field :key, class: 'fullwidth' %>
+        </div>
+        <div class="field">
+          <%= f.label :presentation, t(:presentation) %>
+          <%= f.text_field :presentation, class: 'fullwidth' %>
+          <br/><span class="info">Wird im Menü und als Browser-Titel verwendet.</span>
+        </div>
+        <div class="field">
+          <%= f.label :parent_id, t(:parent) %>
+          <% selected_option = @page.parent.try(:id) if @page %>
+          <%= f.select :parent_id, SpreeMicrocms::Page.all.collect { |p| [p.presentation, p.id] }, {selected: selected_option, include_blank: true}, {class: 'fullwidth select2'} %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

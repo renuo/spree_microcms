@@ -1,0 +1,9 @@
+<ul class="list-group">
+  <% pages.each do |page, children| %>
+    <% render_children = (cms_page_active_current(page.key) || cms_page_in_trail_current(page.key)) && children.present? %>
+    <li class="<%= cms_nav_classes(page.key) %><%= ' with-children' if render_children %> list-group-item">
+      <%= link_to page.presentation, cms_slug_path_by_key(page.key) %>
+      <%= render 'micro_cms/shared/navigation_items', pages: children if render_children %>
+    </li>
+  <% end %>
+</ul>
