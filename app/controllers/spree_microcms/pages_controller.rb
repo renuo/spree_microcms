@@ -5,7 +5,7 @@
 # in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to reload
 load 'lib/spree_microcms.rb' if Rails.env.development?
 
-module SpreeMicrocms S
+module SpreeMicrocms
   class PagesController <  SpreeMicrocms::ApplicationController
 
     # generic routes
@@ -26,14 +26,6 @@ module SpreeMicrocms S
       else
         render json: {message: @page.errors.full_messages}, status: 400
       end
-    end
-
-    # project specific routes
-    # e.g. pages with dynamically server side generated content (e.g. a toc or contact form)
-    # e.g. pages with custom url (i.e. not /p/:slug or /micro_cms/pages/:id)
-    def agb
-      @page = SpreeMicrocms::Page.predefined('agb')
-      render template: 'micro_cms/pages/show'
     end
 
     private

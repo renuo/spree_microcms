@@ -1,8 +1,5 @@
 SpreeMicrocms::Engine.routes.draw do
-
-  namespace :micro_cms do
     resources :pages
-
     namespace :admin do
       resources :pages do
         collection do
@@ -10,6 +7,5 @@ SpreeMicrocms::Engine.routes.draw do
         end
       end
     end
-  end
-  match 'p/(:slug)', to: 'micro_cms/pages#show_slug', slug: /.*/, via: [:get], as: :cms_slug
+  #match 'p/(:slug)', to: 'micro_cms/pages#show_slug', slug: /.*/, via: [:get], as: :cms_slug
 end

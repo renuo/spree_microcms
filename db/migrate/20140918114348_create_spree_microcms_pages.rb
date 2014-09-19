@@ -1,6 +1,6 @@
 class CreateSpreeMicrocmsPages < ActiveRecord::Migration
   def change
-    create_table :micro_cms_pages do |t|
+    create_table :spree_microcms_pages do |t|
       t.text :content, default: ''
       t.string :key, null: true, default: ''
       t.string :presentation, null: false, default: ''

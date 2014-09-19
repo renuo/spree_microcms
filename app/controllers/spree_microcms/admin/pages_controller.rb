@@ -3,18 +3,15 @@
 
 # should not be required, since we have lib added to autoload_paths, rails should require lib/micro_cms automatically
 # in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to reload
-load 'lib/micro_cms.rb' if Rails.env.development?
+#load 'lib/spree_microcms.rb' if Rails.env.development?
 
 module SpreeMicrocms
   module Admin
     class PagesController < ::Spree::Admin::BaseController
-
-      include SpreeMicrocms::ApplicationHelper
-
       before_action :find_resource, only: [:edit, :update, :destroy]
 
       def index
-        @pages = ::SpreeMicrocms::Page.all
+        @pages = SpreeMicrocms::Page.all
       end
 
       def new
