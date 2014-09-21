@@ -3,7 +3,7 @@
 
 # should not be required, since we have lib added to autoload_paths, rails should require lib/micro_cms automatically
 # in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to reload
-load 'lib/spree_microcms.rb' if Rails.env.development?
+#load 'lib/spree_microcms.rb' if Rails.env.development?
 
 module SpreeMicrocms
   class PagesController <  SpreeMicrocms::ApplicationController
@@ -11,11 +11,13 @@ module SpreeMicrocms
     # generic routes
     def show
       @page = SpreeMicrocms::Page.find(params[:id])
+      @title = @page.presentation
     end
 
     def show_slug
       @page = SpreeMicrocms::PageCache.page_by_slug(params[:slug])
-      render template: 'micro_cms/pages/show'
+      @title = @page.presentation
+      render template: 'spree_microcms/pages/show'
     end
 
     def update
@@ -30,7 +32,7 @@ module SpreeMicrocms
 
     private
     def page_params
-      params.require(:micro_cms_page).permit(:content)
+      params.require(:spree_microcms_page).permit(:content)
     end
   end
 end

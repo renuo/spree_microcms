@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     spree_microcms (0.0.1)
+      ancestry
+      cancancan
       ckeditor (~> 4.0.0)
       rails (~> 4.1.5)
 
@@ -34,8 +36,11 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    cancancan (1.9.2)
     ckeditor (4.0.11)
       mime-types
       orm_adapter (~> 0.5.0)

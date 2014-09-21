@@ -1,6 +1,6 @@
 <%= render partial: 'spree/shared/error_messages', locals: {target: @page} %>
 
-<%= form_for(@page, url: cms_url_helper_lookup(:micro_cms_admin_page_path)) do |f| %>
+<%= form_for(@page, url: admin_page_path) do |f| %>
   <fieldset class="no-border-top">
     <%= render partial: 'form', locals: {f: f} %>
     <div class="clear"></div>

@@ -62,7 +62,7 @@ module SpreeMicrocms
       end
 
       def collection_url
-        cms_url_helper_lookup(:micro_cms_admin_pages_path)
+        admin_pages_path
       end
 
       helper_method :collection_url
@@ -74,7 +74,7 @@ module SpreeMicrocms
       end
 
       def page_params
-        params.require(:micro_cms_page).permit(:key, :presentation, :parent_id)
+        params.require(:page).permit(:key, :presentation, :parent_id)
       end
     end
   end

@@ -1,0 +1,15 @@
+<% content_for(:breadcrumb, cms_breadcrumb(@page)) if @page.depth > 1 %>
+<% top_page = @page.root %>
+<% content_for :sidebar do %>
+    <nav class="sidebar-item nav-vertical">
+      <% cache("#{@page.id}_#{@page.subtree.most_recently_updated.first.updated_at.to_i}", expires_in: 1.week) do %>
+          <% top_page.children.each do |nd_level_page| %>
+              <h2 class="first-h2 <%= cms_nav_classes(nd_level_page.key) %>">
+                <%= link_to nd_level_page.presentation, cms_slug_path_by_key(nd_level_page.key) %>
+              </h2>
+              <%= render 'micro_cms/shared/navigation_items', pages: nd_level_page.descendants.arrange(order: 'spree_microcms_pages.order') %>
+          <% end %>
+      <% end %>
+    </nav>
+<% end if top_page.children.length > 0 %>
+<%= yield %>

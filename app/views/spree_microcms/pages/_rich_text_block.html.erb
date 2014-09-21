@@ -5,7 +5,7 @@
    if can?(:edit, @page) && !local_assigns[:disable_editing].present?
      editable_class = 'editable'
      content_editable = true
-     url = update_url(@page)
+     url = page_url(@page)
      field_config = content_rich_text_fields(@page).to_json
    end
 %>

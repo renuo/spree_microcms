@@ -1,5 +1,16 @@
 module SpreeMicrocms
   module ApplicationHelper
+    def method_missing(method, *args, &block)
+      if method.to_s.end_with?('_path', '_url')
+        if spree.respond_to?(method)
+          spree.send(method, *args)
+        else
+          super
+        end
+      else
+        super
+      end
+    end
 
     def cms_slug_path_by_key(key)
       cache = SpreeMicrocms::PathCache
