@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.1.5"
-  s.add_dependency "ckeditor", '~> 4.0.0'
+  s.add_dependency "ckeditor", '~> 4.0.0', github: 'renuo/ckeditor'
   s.add_dependency "ancestry"
   s.add_dependency "spree"
 
