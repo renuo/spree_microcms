@@ -1,14 +1,20 @@
 <%
-   @page = page if local_assigns[:page].present?
-   @page.content = "<h1>#{@page.presentation.capitalize}</h1><p>Text hier bearbeiten.</p>".html_safe unless @page.content.present?
+   page.content = "<h1>#{page.presentation.capitalize}</h1><p>Text hier bearbeiten.</p>".html_safe unless page.content.present?
    content_editable = false
-   if can?(:edit, @page) && !local_assigns[:disable_editing].present?
+   if can?(:edit, page) && !local_assigns[:disable_editing].present?
      editable_class = 'editable'
      content_editable = true
-     url = page_url(@page)
-     field_config = content_rich_text_fields(@page).to_json
+     url = spree_microcms.page_url(page)
+     field_config = {
+             field_name_prefix: "#{page.class.model_name.singular}",
+             fields: [
+                     {
+                             name: 'content', value: ''
+                     }
+             ]
+     }.to_json
    end
 %>
 <%= content_tag(:div, class: "content-type rich-text #{editable_class}", data: {update_url: "#{url}", field_config: "#{field_config}"}, contenteditable: "#{content_editable}") do %>
-  <%= @page.content.html_safe %>
+    <%= page.content.html_safe %>
 <% end %>
