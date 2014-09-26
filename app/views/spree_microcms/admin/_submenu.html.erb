@@ -1,0 +1,5 @@
+<% content_for :sub_menu do %>
+    <ul id="sub_nav" data-hook="admin_microcms_pages_sub_tabs" class="inline-menu">
+      <%= tab :pages, url: spree_microcms.admin_pages_path, match_path: /pages/, icon: 'file-text' %>
+    </ul>
+<% end %>
