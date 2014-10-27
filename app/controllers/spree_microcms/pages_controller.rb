@@ -16,7 +16,7 @@ module SpreeMicrocms
 
     def show_slug
       @page = SpreeMicrocms::PageCache.page_by_slug(params[:slug])
-      render file: "#{Rails.root}/public/404", layout: false, status: :not_found and return unless @page
+      fail ActionController::RoutingError unless @page
 
       @title = @page.presentation
       render template: 'spree_microcms/pages/show'
