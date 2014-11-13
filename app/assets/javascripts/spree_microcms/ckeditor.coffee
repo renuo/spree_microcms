@@ -4,7 +4,7 @@
 $ ->
   CKEDITOR.disableAutoInline = true;
 
-  $('[contenteditable="true"').each ->
+  $('[contenteditable="true"]').each ->
     CKEDITOR.inline(
       this
       on:
