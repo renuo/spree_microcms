@@ -1,9 +1,12 @@
-# TODO autoload does not work yet for the SpreeMicrocms module together with Spree! hence, after modifying e.g. a model rails crashes :,(
+# TODO: autoload does not work yet for the SpreeMicrocms module together with Spree!
+# hence, after modifying e.g. a model rails crashes :,(
 # hence we dont use SpreeMicrocms.base_controller for now ...
 
 # should not be required, since we have lib added to autoload_paths, rails should require lib/micro_cms automatically
-# in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to reload
-#load 'lib/spree_microcms.rb' if Rails.env.development?
+# in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to
+# reload.
+
+# load 'lib/spree_microcms.rb' if Rails.env.development?
 
 module SpreeMicrocms
   module Admin
@@ -29,7 +32,6 @@ module SpreeMicrocms
       end
 
       def edit
-
       end
 
       def update
@@ -52,12 +54,12 @@ module SpreeMicrocms
       end
 
       def destroy
-        if @page.destroy
-          flash[:success] = flash_message_for(@page, :successfully_removed)
-          respond_with(@page) do |format|
-            format.html { redirect_to collection_url }
-            format.js { render_js_for_destroy }
-          end
+        return unless @page.destroy
+
+        flash[:success] = flash_message_for(@page, :successfully_removed)
+        respond_with(@page) do |format|
+          format.html { redirect_to collection_url }
+          format.js { render_js_for_destroy }
         end
       end
 
