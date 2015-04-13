@@ -12,12 +12,8 @@ module SpreeMicrocms
     end
 
     def self.page_by_slug(slug)
-      pages_by_slug = Rails.cache.fetch("#{key_base}-pages-by-slug", expires_in: 1.week) do
-        _pages_by_slug = {}
-        pages.each do |p|
-          _pages_by_slug[p.slug] = p
-        end
-        _pages_by_slug
+      pages_by_slug = Rails.cache.fetch("#{key_base}-pages-by-slug", expires_in: 1.week) do |_key|
+        pages.map { |p| [p.slug, p] }.to_h
       end
       pages_by_slug[slug]
     end
