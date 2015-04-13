@@ -54,12 +54,12 @@ module SpreeMicrocms
       end
 
       def destroy
-        if @page.destroy
-          flash[:success] = flash_message_for(@page, :successfully_removed)
-          respond_with(@page) do |format|
-            format.html { redirect_to collection_url }
-            format.js { render_js_for_destroy }
-          end
+        return unless @page.destroy
+
+        flash[:success] = flash_message_for(@page, :successfully_removed)
+        respond_with(@page) do |format|
+          format.html { redirect_to collection_url }
+          format.js { render_js_for_destroy }
         end
       end
 
