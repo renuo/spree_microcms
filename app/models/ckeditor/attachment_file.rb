@@ -2,7 +2,9 @@ class Ckeditor::AttachmentFile < Ckeditor::Asset
   has_attached_file :data,
                     path: '/:class/:attachment/:id_partition/:filename',
                     storage: :s3,
-                    url: ':s3_url',
+                    s3_protocol: 'https',
+                    s3_headers: {"Cache-Control" => "max-age=31557600"},
+                    s3_host_name: ENV['S3_HOST_NAME'],
                     s3_credentials: {
                         bucket: ENV['S3_BUCKET_NAME'],
                         access_key_id: ENV['AWS_ACCESS_KEY_ID'],
