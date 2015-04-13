@@ -1,4 +1,4 @@
-require "spree_microcms/engine"
+require 'spree_microcms/engine'
 
 module SpreeMicrocms
   mattr_accessor :user_class
@@ -28,7 +28,6 @@ module SpreeMicrocms
   end
 
   class PathCache
-
     def self.paths
       Rails.cache.fetch('cms-paths', expire_in: 1.week) do
         {}

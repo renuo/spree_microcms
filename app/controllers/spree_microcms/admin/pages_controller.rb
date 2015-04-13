@@ -3,7 +3,7 @@
 
 # should not be required, since we have lib added to autoload_paths, rails should require lib/micro_cms automatically
 # in production env, everything in autoload_path is eager_loaded, and not modified during operation :) => no need to reload
-#load 'lib/spree_microcms.rb' if Rails.env.development?
+# load 'lib/spree_microcms.rb' if Rails.env.development?
 
 module SpreeMicrocms
   module Admin
@@ -29,7 +29,6 @@ module SpreeMicrocms
       end
 
       def edit
-
       end
 
       def update

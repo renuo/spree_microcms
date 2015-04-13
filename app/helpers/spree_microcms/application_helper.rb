@@ -14,7 +14,7 @@ module SpreeMicrocms
 
     def cms_slug_path_by_key(key)
       cache = SpreeMicrocms::PathCache
-      unless cache.paths.has_key? key
+      unless cache.paths.key? key
         slug = ::SpreeMicrocms::Page.predefined(key).slug
         cache.set_path(key, cms_url_helper_lookup(:cms_slug_path, slug))
       end
@@ -50,7 +50,7 @@ module SpreeMicrocms
     def cms_breadcrumb(page)
       crumbs = [content_tag(:li, link_to(t('home'), root_path))]
       crumbs << page.ancestors_and_self.map { |p| content_tag(:li, link_to(p.presentation, cms_slug_path_by_key(p.key))) }
-      crumb_list = content_tag(:ol, raw(crumbs.flatten.map { |li| li.mb_chars }.join), class: 'breadcrumb')
+      crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb')
       content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'col-md-12')
     end
 
@@ -72,7 +72,7 @@ module SpreeMicrocms
     def cms_page_in_trail(key, request_path)
       Rails.cache.fetch("#{key}-#{request_path}-pages-trail", expires_in: 1.week) do
         page = page_by_path_private(request_path)
-        page && page.ancestors.map { |p| p.key }.include?(key)
+        page && page.ancestors.map(&:key).include?(key)
       end
     end
 
@@ -86,11 +86,11 @@ module SpreeMicrocms
 
     def page_by_path_private(url_path)
       Rails.cache.fetch("#{url_path}-pages-by-path", expires_in: 1.week) do
-        ::SpreeMicrocms::PageCache.pages.select do |p|
+        ::SpreeMicrocms::PageCache.pages.find do |p|
           rest_path = cms_url_helper_lookup :micro_cms_page_path, p
           slug_path = cms_slug_path_by_key(p.key)
           url_path == rest_path || url_path == slug_path
-        end.first
+        end
       end
     end
   end
