@@ -48,12 +48,14 @@ module SpreeMicrocms
     end
 
     def cms_breadcrumb(page)
-      crumbs = [content_tag(:li, link_to(t('home'), root_path))]
-      crumbs << page.ancestors_and_self.map do |p|
-        content_tag(:li, link_to(p.presentation, cms_slug_path_by_key(p.key)))
+      content_tag :nav, id: 'breadcrumbs', class: 'col-md-12' do
+        content_tag :ol, class: 'breadcrumb' do
+          concat content_tag(:li, link_to(t('home'), root_path))
+          page.ancestors_and_self.each do |p|
+            concat content_tag(:li, link_to(p.presentation, cms_slug_path_by_key(p.key)))
+          end
+        end
       end
-      crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb')
-      content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'col-md-12')
     end
 
     private
