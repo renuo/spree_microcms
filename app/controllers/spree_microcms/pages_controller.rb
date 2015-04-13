@@ -18,7 +18,7 @@ module SpreeMicrocms
 
     def show_slug
       @page = SpreeMicrocms::PageCache.page_by_slug(params[:slug])
-      fail ActionController::RoutingError.new("#{params[:slug]} not found!") unless @page
+      fail(ActionController::RoutingError, "#{params[:slug]} not found!") unless @page
 
       @title = @page.presentation
       render template: 'spree_microcms/pages/show'
