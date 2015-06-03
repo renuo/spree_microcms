@@ -1,0 +1,8 @@
+<% if can? :manage, SpreeMicrocms %>
+  <ul class="nav nav-sidebar">
+    <li class="sidebar-menu-item">
+      <%= main_menu_item('CMS Pages', url: '#sidebar-microcms', icon: 'book') %>
+      <%= render(partial: 'spree_microcms/admin/sub_menu') %>
+    </li>
+  </ul>
+<% end %>
