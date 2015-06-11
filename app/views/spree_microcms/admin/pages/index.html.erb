@@ -1,18 +1,18 @@
 <% content_for :page_title do %>
-  <%= t(:micro_cms_pages) %>
+  <%= t('.micro_cms_pages') %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to t(:new_micro_cms_page), new_admin_page_path, { class: 'btn-success', icon: 'add', id: 'admin_new_product' } %>
+  <%= button_link_to t('.new_micro_cms_page'), new_admin_page_path, { class: 'btn-success', icon: 'add', id: 'admin_new_product' } %>
 <% end if can?(:manage, SpreeMicrocms) %>
 
 <table class="table index sortable" id='listing_micro_cms_pages' data-sortable-link="<%= update_positions_admin_pages_url %>">
   <thead>
   <tr>
     <th class="no-border"></th>
-    <th><%= t('key') %></th>
-    <th><%= t('presentation') %></th>
-    <th><%= t('parent') %></th>
+    <th><%= t('.key') %></th>
+    <th><%= t('.presentation') %></th>
+    <th><%= t('.parent') %></th>
     <th class="actions"></th>
   </tr>
   </thead>

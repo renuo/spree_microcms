@@ -3,18 +3,18 @@
     <div data-hook="microcms_pages">
 
       <div class="form-group" data-hook="key">
-        <%= f.label :key, t(:key) %>
+        <%= f.label :key, t('.key') %>
         <%= f.text_field :key, class: 'form-control' %>
       </div>
 
       <div class="form-group" data-hook="presentation">
-        <%= f.label :presentation, t(:presentation) %>
+        <%= f.label :presentation, t('.presentation') %>
         <%= f.text_field :presentation, class: 'form-control' %>
         <br/><span class="info">Wird im Menü und als Browser-Titel verwendet.</span>
       </div>
 
       <div class="form-group" data-hook="parent_id">
-        <%= f.label :parent_id, t(:parent) %>
+        <%= f.label :parent_id, t('.parent') %>
         <% selected_option = @page.parent.try(:id) if @page %>
         <%= f.select :parent_id, SpreeMicrocms::Page.all.collect { |p| [p.presentation, p.id] }, {selected: selected_option, include_blank: true}, {class: 'fullwidth select2'} %>
       </div>

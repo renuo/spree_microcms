@@ -2,7 +2,7 @@
 
 <%= form_for(@page, url: admin_page_path) do |f| %>
   <fieldset class="no-border-top">
-    <legend align="center"><%= t(:edit_page) %></legend>
+    <legend align="center"><%= t('.edit_page') %></legend>
     <%= render partial: 'form', locals: {f: f} %>
     <%= render partial: 'spree/admin/shared/edit_resource_links' %>
   </fieldset>
